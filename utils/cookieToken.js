@@ -1,5 +1,6 @@
-const { getJwtToken } = require('../helpers/getJwtTokens');
+const getJwtToken = require('../helpers/getJwtTokens');
 const cookieToken = (user, res) => {
+    console.log(user)
     const token = getJwtToken(user.id)
 
     const options = {
@@ -8,7 +9,7 @@ const cookieToken = (user, res) => {
         ),
         httpOnly: true
     }
-    user.password = undefined;
+  
     res.status(200).cookie("token", token, options).json({
         success: true,
         token,
